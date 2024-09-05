@@ -11,4 +11,11 @@ public class Batch {
         this.antall = antall;
         this.hylle = hylle;
     }
+
+    public void setAntall(){
+        if (produkt.getVareType().equals(VareType.Telefon) && antall < 40){
+            antall += 10;
+        }
+    }
+
 }

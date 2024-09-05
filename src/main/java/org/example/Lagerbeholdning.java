@@ -14,6 +14,17 @@ public class Lagerbeholdning {
         return batches;
     }
 
+    public void påfyll(){
+        if (getAntallAvVareType(VareType.Telefon) < 10){
+            int påfyll = 40;
+            for (Batch batch : batches) {
+                if (batch.produkt.getVareType() == VareType.Telefon){
+                    
+                }
+            }
+        }
+    }
+
     public int getAntallAvVareType(VareType varetype){
 
         int antallAvVareType = 0;
