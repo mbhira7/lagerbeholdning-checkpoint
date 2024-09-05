@@ -31,7 +31,7 @@ public class Lagerbeholdning {
 
     public void printLagerbeholdning() {
         for (Produkt produkt : produkter) {
-            System.out.println("Produkt: " + produkt.getProduktId() + " " + produkt.getVareType() + ", " + produkt.getAntall() + " enheter" + ", " + produkt.getHylle());
+            System.out.println(produkt.getVareType() + ": " + produkt.getAntall());
         }
     }
 }
