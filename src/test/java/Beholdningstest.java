@@ -1,11 +1,8 @@
-import org.example.Batch;
 import org.example.Lagerbeholdning;
 import org.example.Produkt;
 import org.example.VareType;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,15 +25,40 @@ public class Beholdningstest {
 
     @Test
     public void fåAntallAvVareTypeTest() {
-        List<Batch> list = new ArrayList<>();
-        Batch batch1 = new Batch((new Produkt("A", VareType.Laptop)), 5,"hylle A4");
+        List<Produkt> list = new ArrayList<>();
+        Produkt batch1 = new Produkt("A", VareType.Laptop, 5,"hylle A4");
         list.add(batch1);
 
         Lagerbeholdning lagerbeholdning = new Lagerbeholdning(list);
         int antall = lagerbeholdning.getAntallAvVareType(VareType.Laptop);
 
         Assertions.assertEquals(5, antall);
+    }
 
+    @Test
+    public void påfyllTest() {
+        List<Produkt> list = new ArrayList<>();
+        Produkt batch1 = new Produkt("A", VareType.Laptop, 4,"hylle A4");
+        list.add(batch1);
+
+        Lagerbeholdning lagerbeholdning = new Lagerbeholdning(list);
+        lagerbeholdning.påfyll();
+
+        Produkt p = lagerbeholdning.getProdukter().getFirst();
+
+
+        Assertions.assertEquals(19, p.getAntall());
+    }
+
+    @Test
+    public void printLagerBeholdningTest() {
+        List<Produkt> list = new ArrayList<>();
+        Produkt batch1 = new Produkt("A", VareType.Laptop, 4,"hylle A4");
+        list.add(batch1);
+
+        Lagerbeholdning lagerbeholdning = new Lagerbeholdning(list);
+
+        lagerbeholdning.printLagerbeholdning();
     }
 
 }

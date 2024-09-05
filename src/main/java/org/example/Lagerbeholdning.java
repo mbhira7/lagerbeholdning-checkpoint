@@ -4,37 +4,34 @@ import java.util.List;
 
 public class Lagerbeholdning {
 
-    List<Batch> batches;
+    List<Produkt> produkter;
 
-    public Lagerbeholdning(List<Batch> batches) {
-        this.batches = batches;
+    public Lagerbeholdning(List<Produkt> produkter) {
+        this.produkter = produkter;
     }
 
-    public List<Batch> getBatches() {
-        return batches;
+    public List<Produkt> getProdukter() {
+        return produkter;
     }
 
     public void påfyll(){
-        if (getAntallAvVareType(VareType.Telefon) < 10){
-            int påfyll = 40;
-            for (Batch batch : batches) {
-                if (batch.produkt.getVareType() == VareType.Telefon){
-                    
-                }
-            }
+        for (Produkt p : produkter) {
+            p.økLagerBeholdning();
         }
     }
 
-    public int getAntallAvVareType(VareType varetype){
-
-        int antallAvVareType = 0;
-
-        for (Batch batch : batches) {
-            if (batch.produkt.getVareType().equals(varetype)){
-                antallAvVareType += batch.antall;
+    public int getAntallAvVareType(VareType varetype) {
+        for (Produkt produkt : produkter) {
+            if (produkt.getVareType().equals(varetype)) {
+                return produkt.getAntall();
             }
         }
-        return antallAvVareType;
+        return 0;
     }
 
+    public void printLagerbeholdning() {
+        for (Produkt produkt : produkter) {
+            System.out.println("Produkt: " + produkt.getProduktId() + " " + produkt.getVareType() + ", " + produkt.getAntall() + " enheter" + ", " + produkt.getHylle());
+        }
+    }
 }
