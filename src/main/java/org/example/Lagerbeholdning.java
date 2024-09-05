@@ -16,11 +16,14 @@ public class Lagerbeholdning {
 
     public int getAntallAvVareType(VareType varetype){
 
-        for (Batch batch : batches) {
-            
-        }
+        int antallAvVareType = 0;
 
-        return 0;
+        for (Batch batch : batches) {
+            if (batch.produkt.getVareType().equals(varetype)){
+                antallAvVareType += batch.antall;
+            }
+        }
+        return antallAvVareType;
     }
 
 }
