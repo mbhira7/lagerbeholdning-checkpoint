@@ -7,14 +7,6 @@ public class Ordre {
     private int ordreId;
     private List<OrdreLinje> ordrelinjer;
 
-    public void hentAntallProduker(){
-        for(OrdreLinje ordreLinje : ordrelinjer){
-            if(ordreLinje.getOrdreId() == ordreId){
-
-            }
-        }
-    }
-
     public void printOrdreHistorikk(){
         for(OrdreLinje ordreLinje : ordrelinjer){
             System.out.println(ordreLinje.getOrdreId() + ordreLinje.getAntall() + "" + ordreLinje.getProdukt().getVareType());

@@ -49,7 +49,7 @@ public class Lagerbeholdning {
         BufferedReader reader;
 
         try {
-            reader = new BufferedReader(new FileReader("C:\\\\Users\\\\frball\\\\Documents\\\\Brights\\\\checkpoint\\\\lagerbeholdning-checkpoint\\\\src\\\\main\\\\java\\\\org\\\\example\\\\lagerbeholdning.txt"));
+            reader = new BufferedReader(new FileReader("src\\\\main\\\\java\\\\org\\\\example\\\\lagerbeholdning.txt"));
             String line = reader.readLine();
 
             while (line != null && !line.isEmpty()) {
