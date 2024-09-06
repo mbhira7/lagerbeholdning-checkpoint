@@ -1,13 +1,19 @@
 package org.example;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lagerbeholdning {
 
     List<Produkt> produkter;
+
+    public Lagerbeholdning() {
+        produkter = new ArrayList<>();
+    }
 
     public Lagerbeholdning(List<Produkt> produkter) {
         this.produkter = produkter;
@@ -39,13 +45,24 @@ public class Lagerbeholdning {
     }
 
     public void readFiles() throws IOException {
-        FileReader fr = new FileReader("C:\\Users\\frball\\Documents\\Brights\\checkpoint\\lagerbeholdning-checkpoint\\src\\main\\java\\org\\example\\lagerbeholdning.txt");
 
-        int i;
-        // Holds true till there is nothing to read
-        while ((i = fr.read()) != -1)
+        BufferedReader reader;
 
-            // Print all the content of a file
-            System.out.print((char)i);
+        try {
+            reader = new BufferedReader(new FileReader("C:\\\\Users\\\\frball\\\\Documents\\\\Brights\\\\checkpoint\\\\lagerbeholdning-checkpoint\\\\src\\\\main\\\\java\\\\org\\\\example\\\\lagerbeholdning.txt"));
+            String line = reader.readLine();
+
+            while (line != null && !line.isEmpty()) {
+                //System.out.println(line);
+                String[] result = line.split(";");
+                produkter.add(new Produkt(result[0], VareType.valueOf(result[1]), Integer.parseInt(result[2]), result[3]));
+                // read next line
+                line = reader.readLine();
+            }
+
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
