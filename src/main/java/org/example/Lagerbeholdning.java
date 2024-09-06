@@ -1,6 +1,5 @@
 package org.example;
 
-import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -27,10 +26,16 @@ public class Lagerbeholdning {
         return produkter;
     }
 
-    public void påfyll(){
+    public ArrayList<Leveranse> påfyll(ArrayList<Leveranse> leveranseArrayList) {
         for (Produkt p : produkter) {
-            p.setAntall();
+            Leveranse leveranse = p.setAntall();  // Her kalles setAntall(), sørg for at det returnerer noe gyldig
+            if (leveranse != null) {
+                leveranseArrayList.add(leveranse);
+            } else {
+                System.out.println("Advarsel: null Leveranse ble funnet og ikke lagt til.");
+            }
         }
+        return leveranseArrayList;
     }
 
     public int getAntallAvVareType(VareType varetype) {
@@ -70,7 +75,6 @@ public class Lagerbeholdning {
             e.printStackTrace();
         }
     }
-
 
     public void hentVarer(Map<String, Integer> map, Ordre ordre) {
 

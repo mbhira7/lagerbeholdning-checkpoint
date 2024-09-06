@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.*;
 
 public class Main {
-
     private static final Lagerbeholdning lagerbeholdning = new Lagerbeholdning();
     private static final Ordre ordre = new Ordre();
 
@@ -16,6 +15,8 @@ public class Main {
         boolean control = true;
         Scanner scanner = new Scanner(System.in);
         lagerbeholdning.readFiles();
+        ArrayList<Leveranse> leveranser = new ArrayList<>();
+        //lagerbeholdning.påfyll(leveranser);
 
         while(control) {
             System.out.println(
@@ -35,12 +36,23 @@ public class Main {
             switch (choice) {
                 case 1 -> lagerbeholdning.printLagerbeholdning();
                 case 2 -> ordre.printOrdreHistorikk();
-                case 4 -> vareRekvirering();
+                case 3 -> {
+                    if (leveranser != null && !leveranser.isEmpty()) {
+                        leveranser.forEach(Leveranse::printLeveranse);
+                    } else {
+                        System.out.println("Ingen leveranser funnet.");
+                    }
+                }
+                case 4 -> {
+                    vareRekvirering();
+                    lagerbeholdning.påfyll(leveranser);
+                }
                 case 5 -> control = false;
                 default -> System.out.println("Velg ett av menyvalgene over");
             }
 
         }
+
     }
 
     public static void vareRekvirering() {
