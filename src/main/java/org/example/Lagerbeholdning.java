@@ -1,5 +1,6 @@
 package org.example;
 
+import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -7,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Lagerbeholdning {
 
@@ -41,6 +43,7 @@ public class Lagerbeholdning {
     }
 
     public void printLagerbeholdning() {
+        System.out.println("\nLAGERBEHOLDNING\n");
         for (Produkt produkt : produkter) {
             System.out.println(produkt.getVareType() + ": " + produkt.getAntall());
         }
@@ -68,21 +71,17 @@ public class Lagerbeholdning {
         }
     }
 
-    public void hentVarer(HashMap<String, Integer> map, Ordre ordre) {
+
+    public void hentVarer(Map<String, Integer> map, Ordre ordre) {
 
         for (Produkt produkt : produkter) {
-            if (produkt.getProduktId().equals(map.get(produkt.getProduktId()))) {
-                produkt.reduserBeholdning(map.get(produkt.getAntall()));
-
-                int latestOrderId = ordre.getLastOrdreLinje().getOrdreId();
-
-                OrdreLinje ordreLinje = new OrdreLinje((latestOrderId+1), map.get(produkt.getAntall()),produkt);
+            if (map.containsKey(produkt.getProduktId())) {
+                int antall = map.get(produkt.getProduktId());
+                produkt.reduserBeholdning(antall);
+                OrdreLinje ordreLinje = new OrdreLinje(antall,produkt);
                 ordre.addOrdreLinje(ordreLinje);
-
-                produkt.reduserBeholdning(map.get(produkt.getAntall()));
             }
         }
-
 
     }
 }

@@ -3,12 +3,13 @@ package org.example;
 import java.util.List;
 
 public class OrdreLinje {
+    private static int currentOrdreId = 0;
     private int ordreId;
     private int antall;
     private Produkt produkt;
 
-    public OrdreLinje(int ordreId, int antall, Produkt produkt) {
-        this.ordreId = ordreId;
+    public OrdreLinje(int antall, Produkt produkt) {
+        this.ordreId = ++currentOrdreId;
         this.antall = antall;
         this.produkt = produkt;
     }

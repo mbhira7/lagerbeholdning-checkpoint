@@ -41,8 +41,8 @@ public class Produkt {
     public String getHylle() {
         return hylle;
     }
-    public void reduserBeholdning(int hentUt){
 
+    public void reduserBeholdning(int hentUt){
         if (antall>=hentUt){
             antall-=hentUt;
         }

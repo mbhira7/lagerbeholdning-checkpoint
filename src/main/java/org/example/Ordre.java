@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ordre {
-    private int ordreId;
     private List<OrdreLinje> ordrelinjer;
 
-    public void printOrdreHistorikk(){
-        for(OrdreLinje ordreLinje : ordrelinjer){
-            System.out.println(ordreLinje.getOrdreId() + ordreLinje.getAntall() + "" + ordreLinje.getProdukt().getVareType());
-        }
+    public Ordre() {
+        this.ordrelinjer = new ArrayList<>();
     }
 
-    public OrdreLinje getLastOrdreLinje(){
-        return ordrelinjer.get(ordrelinjer.size()-1);
+    public void printOrdreHistorikk(){
+        System.out.println("\nORDREHISTORIKK\n");
+        for(OrdreLinje ordreLinje : ordrelinjer){
+            System.out.println(ordreLinje.getOrdreId() + ordreLinje.getAntall() + " " + ordreLinje.getProdukt().getVareType());
+        }
     }
 
     public void addOrdreLinje(OrdreLinje ordreLinje){
