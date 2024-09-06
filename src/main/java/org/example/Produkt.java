@@ -26,20 +26,20 @@ public class Produkt {
         return antall;
     }
 
-    public String getHylle() {
-        return hylle;
-    }
-
-    public void økLagerBeholdning(){
+    public void setAntall() {
         if (vareType.equals(VareType.Telefon) && (antall < 10)){
-            this.antall+= 40;
+            antall+= 40;
         }
         else if (vareType.equals(VareType.Laptop) && (antall < 5)){
-            this.antall+= 15;
+            antall+= 15;
         }
         else if (vareType.equals(VareType.Tablet) && (antall < 5)){
-            this.antall+= 5;
+            antall+= 5;
         }
+    }
+
+    public String getHylle() {
+        return hylle;
     }
 
 }

@@ -15,8 +15,8 @@ public class Lagerbeholdning {
     }
 
     public void påfyll(){
-        for (Produkt p : produkter) {
-            p.økLagerBeholdning();
+        for (Produkt produkt : produkter) {
+            produkt.setAntall();
         }
     }
 
