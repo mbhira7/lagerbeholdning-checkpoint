@@ -12,4 +12,12 @@ public class Ordre {
             System.out.println(ordreLinje.getOrdreId() + ordreLinje.getAntall() + "" + ordreLinje.getProdukt().getVareType());
         }
     }
+
+    public OrdreLinje getLastOrdreLinje(){
+        return ordrelinjer.get(ordrelinjer.size()-1);
+    }
+
+    public void addOrdreLinje(OrdreLinje ordreLinje){
+        ordrelinjer.add(ordreLinje);
+    }
 }

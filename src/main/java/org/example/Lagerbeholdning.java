@@ -5,11 +5,13 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Lagerbeholdning {
 
     List<Produkt> produkter;
+
 
     public Lagerbeholdning() {
         produkter = new ArrayList<>();
@@ -64,5 +66,23 @@ public class Lagerbeholdning {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void hentVarer(HashMap<String, Integer> map, Ordre ordre) {
+
+        for (Produkt produkt : produkter) {
+            if (produkt.getProduktId().equals(map.get(produkt.getProduktId()))) {
+                produkt.reduserBeholdning(map.get(produkt.getAntall()));
+
+                int latestOrderId = ordre.getLastOrdreLinje().getOrdreId();
+
+                OrdreLinje ordreLinje = new OrdreLinje((latestOrderId+1), map.get(produkt.getAntall()),produkt);
+                ordre.addOrdreLinje(ordreLinje);
+
+                produkt.reduserBeholdning(map.get(produkt.getAntall()));
+            }
+        }
+
+
     }
 }
