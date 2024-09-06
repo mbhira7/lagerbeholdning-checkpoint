@@ -30,16 +30,24 @@ public class Produkt {
         return hylle;
     }
 
-    public void økLagerBeholdning(){
+    public void setAntall(){
         if (vareType.equals(VareType.Telefon) && (antall < 10)){
-            this.antall+= 40;
+            antall+= 40;
+            leverandørRapport(40, produktId, vareType, antall);
         }
         else if (vareType.equals(VareType.Laptop) && (antall < 5)){
-            this.antall+= 15;
+            antall+= 15;
+            leverandørRapport(15, produktId, vareType, antall);
         }
         else if (vareType.equals(VareType.Tablet) && (antall < 5)){
-            this.antall+= 5;
+            antall+= 5;
+            leverandørRapport(5, produktId, vareType, antall);
         }
+    }
+
+    public void leverandørRapport(int antallNyeEnhterer, String produktId, VareType vareType, int antall) {
+        System.out.println("Levert " + antallNyeEnhterer + " nye av vare " + produktId + " " + vareType  + ". " +
+                "På lager etter leveranse: " + antall);
     }
 
 }

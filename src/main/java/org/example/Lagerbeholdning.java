@@ -1,5 +1,8 @@
 package org.example;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 
 public class Lagerbeholdning {
@@ -16,7 +19,7 @@ public class Lagerbeholdning {
 
     public void påfyll(){
         for (Produkt p : produkter) {
-            p.økLagerBeholdning();
+            p.setAntall();
         }
     }
 
@@ -33,5 +36,16 @@ public class Lagerbeholdning {
         for (Produkt produkt : produkter) {
             System.out.println(produkt.getVareType() + ": " + produkt.getAntall());
         }
+    }
+
+    public void readFiles() throws IOException {
+        FileReader fr = new FileReader("C:\\Users\\frball\\Documents\\Brights\\checkpoint\\lagerbeholdning-checkpoint\\src\\main\\java\\org\\example\\lagerbeholdning.txt");
+
+        int i;
+        // Holds true till there is nothing to read
+        while ((i = fr.read()) != -1)
+
+            // Print all the content of a file
+            System.out.print((char)i);
     }
 }
