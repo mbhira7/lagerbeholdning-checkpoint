@@ -41,5 +41,13 @@ public class Produkt {
     public String getHylle() {
         return hylle;
     }
+    public void reduserBeholdning(int hentUt){
 
+        if (antall>=hentUt){
+            antall-=hentUt;
+        }
+        else {
+            System.out.println("Kan ikke hente ut flere varer enn det som er lagret");
+        }
+    }
 }
