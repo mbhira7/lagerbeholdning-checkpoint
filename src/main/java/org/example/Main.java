@@ -19,6 +19,9 @@ public class Main {
         Lagerbeholdning lagerbeholdning = new Lagerbeholdning();
         lagerbeholdning.readFiles();
         Ordre ordre = new Ordre();
+        ArrayList<Leveranse> leveranser = new ArrayList<>();
+        lagerbeholdning.påfyll(leveranser);
+
 
         while(control) {
             System.out.println(
@@ -39,6 +42,13 @@ public class Main {
             switch (choice) {
                 case 1 -> lagerbeholdning.printLagerbeholdning();
                 case 2 -> ordre.printOrdreHistorikk();
+                case 3 -> {
+                    if (leveranser != null && !leveranser.isEmpty()) {
+                        leveranser.forEach(Leveranse::printLeveranse);
+                    } else {
+                        System.out.println("Ingen leveranser funnet.");
+                    }
+                }
                 case 4 -> vareRekvirerikng();
                 case 5 -> control = false;
                 default -> System.out.println("Velg ett av menyvalgene over");

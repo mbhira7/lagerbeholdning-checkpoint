@@ -25,10 +25,16 @@ public class Lagerbeholdning {
         return produkter;
     }
 
-    public void påfyll(){
+    public ArrayList<Leveranse> påfyll(ArrayList<Leveranse> leveranseArrayList) {
         for (Produkt p : produkter) {
-            p.setAntall();
+            Leveranse leveranse = p.setAntall();  // Her kalles setAntall(), sørg for at det returnerer noe gyldig
+            if (leveranse != null) {
+                leveranseArrayList.add(leveranse);
+            } else {
+                System.out.println("Advarsel: null Leveranse ble funnet og ikke lagt til.");
+            }
         }
+        return leveranseArrayList;
     }
 
     public int getAntallAvVareType(VareType varetype) {
@@ -51,7 +57,7 @@ public class Lagerbeholdning {
         BufferedReader reader;
 
         try {
-            reader = new BufferedReader(new FileReader("src\\\\main\\\\java\\\\org\\\\example\\\\lagerbeholdning.txt"));
+            reader = new BufferedReader(new FileReader("C:\\Users\\frball\\Documents\\Brights\\checkpoint\\lagerbeholdning-checkpoint\\src\\main\\java\\org\\example\\lagerbeholdning.txt"));
             String line = reader.readLine();
 
             while (line != null && !line.isEmpty()) {
@@ -82,7 +88,5 @@ public class Lagerbeholdning {
                 produkt.reduserBeholdning(map.get(produkt.getAntall()));
             }
         }
-
-
     }
 }

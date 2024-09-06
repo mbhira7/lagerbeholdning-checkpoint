@@ -26,16 +26,22 @@ public class Produkt {
         return antall;
     }
 
-    public void setAntall() {
+    public Leveranse setAntall() {
+
+
         if (vareType.equals(VareType.Telefon) && (antall < 10)){
             antall+= 40;
+            return new Leveranse(40, this, antall);
         }
         else if (vareType.equals(VareType.Laptop) && (antall < 5)){
             antall+= 15;
+            return new Leveranse(15, this, antall);
         }
         else if (vareType.equals(VareType.Tablet) && (antall < 5)){
             antall+= 5;
+            return new Leveranse(5, this, antall);
         }
+        return null;
     }
 
     public String getHylle() {

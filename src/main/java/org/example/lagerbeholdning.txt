@@ -1,4 +1,4 @@
-A;Telefon;50;hylle A1
-B;Laptop;20;hylle B2
+A;Telefon;9;hylle A1
+B;Laptop;3;hylle B2
 C;Tablet;10;hylle A2
 
